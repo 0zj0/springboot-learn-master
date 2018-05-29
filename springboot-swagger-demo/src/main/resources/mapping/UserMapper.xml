@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.UserMapper">
+
+	<sql id="selectColumn">
+		t.id as id,
+		t.name as name,
+		t.age as age,
+		t.sex as sex,
+		t.addr as addr
+	</sql>
+
+	<sql id="queryCondition">
+		<if test="id != null">
+			AND t.id = #{id} 
+		</if>
+		<if test="name != null and name != ''">
+			AND t.name = #{name} 
+		</if>
+		<if test="age != null">
+			AND t.age = #{age} 
+		</if>
+		<if test="sex != null and sex != ''">
+			AND t.sex = #{sex} 
+		</if>
+		<if test="addr != null and addr != ''">
+			AND t.addr = #{addr} 
+		</if>
+	</sql>
+	
+	<select id="finds" parameterType="com.example.demo.entity.User"
+		resultType="com.example.demo.entity.User">
+		select 
+			<include refid="selectColumn"/>
+		from user as t
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<include refid="queryCondition"/>
+		</trim> 
+	</select>
+		
+	<sql id="conditionForPage">
+		<if test="obj.id != null">
+			AND t.id = #{obj.id} 
+		</if>
+		<if test="obj.name != null and obj.name != ''">
+			AND t.name = #{obj.name} 
+		</if>
+		<if test="obj.age != null">
+			AND t.age = #{obj.age} 
+		</if>
+		<if test="obj.sex != null and obj.sex != ''">
+			AND t.sex = #{obj.sex} 
+		</if>
+		<if test="obj.addr != null and obj.addr != ''">
+			AND t.addr = #{obj.addr} 
+		</if>
+	</sql>
+	
+	<select id="findByPage" parameterType="java.util.HashMap"
+		resultType="com.example.demo.entity.User">
+		select 
+			<include refid="selectColumn"/>
+		from user as t
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<include refid="conditionForPage"/>
+		</trim> 
+		limit #{page.offset},#{page.rows}
+	</select>
+	
+	<!-- <select id="findByPageCount" parameterType="java.util.HashMap" resultType="int">
+		select 
+			count(1) as count
+		from user as t
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<include refid="queryCondition"/>
+		</trim>
+	</select> -->
+	
+	<insert id="insert" parameterType="com.example.demo.entity.User">
+		insert into user(
+			name,
+			age,
+			sex,
+			addr
+		) values (
+			#{name},
+			#{age},
+			#{sex},
+			#{addr}
+		)
+	</insert>
+	
+	<update id="update" parameterType="com.example.demo.entity.User">
+		update user 
+		<set>
+			<if test="id != null and id != ''">
+				t.id = #{id},
+			</if>	
+			<if test="name != null and name != ''">
+				t.name = #{name},
+			</if>	
+			<if test="age != null and age != ''">
+				t.age = #{age},
+			</if>	
+			<if test="sex != null and sex != ''">
+				t.sex = #{sex},
+			</if>	
+			<if test="addr != null and addr != ''">
+				t.addr = #{addr},
+			</if>	
+		</set>
+		where id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="com.example.demo.entity.User">
+		delete from user 
+		where id=#{id}
+	</delete>
+
+</mapper>
