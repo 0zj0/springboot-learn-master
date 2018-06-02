@@ -24,6 +24,9 @@ public class QRCodeUtil {
     public static final String FORMAT = "png";
     public static final String CHARTSET = "utf-8";
 
+    // 二维码尺寸
+    private static final int QRCODE_SIZE = 300;
+
     /**
      * 创建二维码
      * @param url 二维码链接url

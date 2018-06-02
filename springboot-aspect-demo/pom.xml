@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.example</groupId>
-	<artifactId>utils-demo</artifactId>
+	<artifactId>demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>utils-demo</name>
+	<name>demo</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
@@ -27,30 +27,33 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
 
-		<!-- 二维码-->
+		<!--lombok-->
 		<dependency>
-			<groupId>com.google.zxing</groupId>
-			<artifactId>core</artifactId>
-			<version>3.3.2</version>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.10</version>
 		</dependency>
+
 		<dependency>
-			<groupId>com.google.zxing</groupId>
-			<artifactId>javase</artifactId>
-			<version>3.3.2</version>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.30</version>
 		</dependency>
+
 
 	</dependencies>
 
