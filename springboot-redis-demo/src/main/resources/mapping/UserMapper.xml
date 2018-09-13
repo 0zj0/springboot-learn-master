@@ -44,9 +44,7 @@
 		select
 		<include refid="selectColumn"/>
 		from user as t
-		<trim prefix="WHERE" prefixOverrides="AND |OR ">
-			<include refid="queryCondition"/>
-		</trim>
+		where t.id = #{id}
 	</select>
 		
 	<sql id="conditionForPage">
