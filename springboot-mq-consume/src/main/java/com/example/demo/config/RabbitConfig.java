@@ -1,10 +1,12 @@
 package com.example.demo.config;
 
+import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.amqp.SimpleRabbitListenerContainerFactoryConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -69,9 +71,9 @@ public class RabbitConfig {
 
 
     //注册监听容器工厂
-    /*@Bean(name="firstContainerFactory")
+    @Bean(name="firstContainerFactory")
     public SimpleRabbitListenerContainerFactory firstContainerFactory(SimpleRabbitListenerContainerFactoryConfigurer configurer,
-                                                                @Qualifier("firstConnectionFactory") ConnectionFactory connectionFactory ) {
+                                                                      @Qualifier("firstConnectionFactory") ConnectionFactory connectionFactory ) {
         SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
         configurer.configure(factory, connectionFactory);
         return factory;
@@ -83,7 +85,7 @@ public class RabbitConfig {
         SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
         configurer.configure(factory, connectionFactory);
         return factory;
-    }*/
+    }
 
 
 }
