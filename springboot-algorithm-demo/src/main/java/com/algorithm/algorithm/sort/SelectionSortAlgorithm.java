@@ -7,6 +7,8 @@ package com.algorithm.algorithm.sort;
  */
 public class SelectionSortAlgorithm {
 
+    private static int count = 0;
+
     /**
      *     表现最稳定的排序算法之一，因为无论什么数据进去都是O(n2)的时间复杂度，所以用到它的时候，数据规模越小越好。
      * 唯一的好处可能就是不占用额外的内存空间了吧。理论上讲，选择排序可能也是平时排序一般人想到的最多的排序方法了吧。
@@ -33,6 +35,7 @@ public class SelectionSortAlgorithm {
                 if (arr[j] < arr[minIndex]) {
                     //将最小数的索引保存
                     minIndex = j;
+                    count ++;
                 }
             }
             int temp = arr[minIndex];
@@ -49,10 +52,29 @@ public class SelectionSortAlgorithm {
             System.out.print(a+"\t");
         }
         System.out.println();
-        int[] arrSort = selectionSort(arr);
+        int[] arrSort = selectionSort1(arr);
         for(int a : arrSort){
             System.out.print(a+"\t");
         }
+        System.out.println();
+        System.out.println(count);
+    }
+
+    public static int[] selectionSort1(int[] arr) {
+        for(int i=0;i<arr.length;i++){
+            int minIndex = i;
+            for(int j = i;j<arr.length;j++){
+                if(arr[minIndex] > arr[j]){
+                    minIndex = j;
+                }
+            }
+            if(minIndex != i){
+                int temp = arr[i];
+                arr[i] =arr[minIndex];
+                arr[minIndex] = temp;
+            }
+        }
+        return arr;
     }
 
 }
