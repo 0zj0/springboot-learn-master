@@ -1,4 +1,4 @@
-package com.example.demo.design.template_method;
+package com.example.demo.design.d_template_method;
 
 /**
  * 抽象模板方法

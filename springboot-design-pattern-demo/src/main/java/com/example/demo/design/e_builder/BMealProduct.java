@@ -1,4 +1,4 @@
-package com.example.demo.design.builder;
+package com.example.demo.design.e_builder;
 
 /**
  * 套餐-产品类
