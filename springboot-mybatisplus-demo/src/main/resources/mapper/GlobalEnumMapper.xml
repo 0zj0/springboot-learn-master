@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.GlobalEnumMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.demo.entity.GlobalEnum">
+        <id column="enumId" property="enumId" />
+        <result column="enumKey" property="enumKey" />
+        <result column="enumName" property="enumName" />
+        <result column="enumType" property="enumType" />
+        <result column="remark" property="remark" />
+        <result column="ctime" property="ctime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        enumId, enumKey, enumName, enumType, remark, ctime
+    </sql>
+
+
+    <select id="selectPage" resultMap="BaseResultMap">
+      select
+        <include refid="Base_Column_List"></include>
+      from  global_enum
+    </select>
+</mapper>

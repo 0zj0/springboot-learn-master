@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.dao.GlobalEnumMapper;
 import com.example.demo.dao.SysUserMapper;
 import com.example.demo.entity.SysUser;
 import com.example.demo.service.ISysUserService;
