@@ -24,6 +24,10 @@ public class DirectSendTest {
     }
 
     @Test
+    public void deadSend() {
+        directSend.delaySend();
+    }
+    @Test
     public void directSend2() {
         directSend.directSend2();
     }

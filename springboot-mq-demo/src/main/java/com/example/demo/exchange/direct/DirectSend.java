@@ -27,6 +27,20 @@ public class DirectSend {
 
     private static final String SECOND_ROUTING_KEY_2 = "routing_second_two";
 
+    private static final String DEAD_QUEUE = "queue-test-dead-1";   //队列-延时队列
+
+    private static final String DEAD_EXCHANGE = "exchange-test-dead-1";   //交换机-延时队列
+
+    private static final String DEAD_ROUT = "key-test-dead-1";   //延时队列
+
+    private static final String DEAD_QUEUE_DEAD = "dead-test-queue";    //队列-死信队列
+
+    private static final String DEAD_EXCHANGE_DEAD = "dead-test-exchange";    //交换机-死信队列
+
+    private static final String DEAD_ROUT_DEAD = "dead-test-key";    //死信队列
+
+
+
     @Resource(name="firstRabbitTemplate")
     private RabbitTemplate firstRabbitTemplate;
 
@@ -37,6 +51,15 @@ public class DirectSend {
         System.out.println("开始发送direct模式消息(1)...");
         firstRabbitTemplate.convertAndSend(EXCHANGE_NAME,ROUTING_KEY_1,"发送direct模式消息-路由：rout_test_one");
         System.out.println("发送direct模式消息(1)完成...");
+    }
+
+    public void delaySend(){
+        System.out.println("开始发送direct-延时队列-模式消息...");
+        firstRabbitTemplate.convertAndSend(DEAD_EXCHANGE,DEAD_ROUT,"发送direct模式消息-延时队列-路由：key-test-dead-1",
+        message -> {message.getMessageProperties().setExpiration(5*1000 + "");
+            System.out.println(System.currentTimeMillis());
+        return message;});
+        System.out.println("发送direct-延时队列-模式消息完成...");
     }
 
     public void directSend2(){

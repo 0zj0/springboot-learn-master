@@ -18,12 +18,33 @@ public class DirectConsume {
 
     @RabbitListener(queues = "queue_test_one",containerFactory = "firstContainerFactory")
     public void queueConsume1(Message msg, Channel channel){
+        System.out.println("**************2222222222*************");
         //System.out.println("消费direct模式消息(1)...");
         System.out.println("queueConsume1:"+msg.toString());
         SimpleMessageConverter d=new SimpleMessageConverter();
         Object messObj=d.fromMessage(msg);
         System.out.println("queueConsume1:"+messObj.toString());
     }
+
+    @RabbitListener(queues = "dead-test-queue",containerFactory = "firstContainerFactory")
+    public void queueConsumeDead(Message msg, Channel channel){
+        System.out.println("**************11111111111*************");
+        try {
+            channel.basicAck(msg.getMessageProperties().getDeliveryTag(),false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*@RabbitListener(queues = "queue-test-dead-1",containerFactory = "firstContainerFactory")
+    public void queueConsumeDelay(Message msg, Channel channel){
+        //System.out.println("消费direct模式消息(1)...");
+        System.out.println(System.currentTimeMillis());
+        System.out.println("queueConsume1:"+msg.toString());
+        SimpleMessageConverter d=new SimpleMessageConverter();
+        Object messObj=d.fromMessage(msg);
+        System.out.println("queueConsume1:"+messObj.toString());
+    }*/
 
     @RabbitListener(queues = "queque_test_one_2",containerFactory = "firstContainerFactory")
     public void queueConsume2(Message msg, Channel channel) throws IOException, TimeoutException {

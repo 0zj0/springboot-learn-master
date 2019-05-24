@@ -29,4 +29,28 @@ headers：头消息匹配
 对比其中的键值对是否完全匹配Queue与Exchange绑定时指定的键值对；如果完全匹配则消息会路由到该Queue，否则不会路由到该Queue。
      
 
-   
+延时队列：
+利用TTL DLX 实现延时队列
+1.创建死信队列
+dead-test-queue    //队列-死信队列
+dead-test-exchange    //交换机-死信队列
+dead-test-key    //死信队列
+
+2.创建业务mq
+queue-test-dead-1       //队列-延时队列-发送
+exchange-test-dead-1    //交换机-延时队列-发送
+key-test-dead-1
+其中:queue绑定设置
+x-dead-letter-exchange:dead-test-exchange
+x-dead-letter-routing-key:dead-test-key
+
+3.mq产生：
+exchange-test-dead-1，key-test-dead-1 发送mq消息，需设置有效期
+firstRabbitTemplate.convertAndSend(DEAD_EXCHANGE,DEAD_ROUT,"发送direct模式消息-延时队列-路由：key-test-dead-1",
+        message -> {message.getMessageProperties().setExpiration(5*1000 + "");
+            System.out.println(System.currentTimeMillis());
+        return message;});
+
+4.mq消费：
+设置dead-test-queue的消费者，
+延时队列queue-test-dead-1 不用消费，在有效期内未消费，进入死信队列,在死信队列执行操作，如此实现延时队列
