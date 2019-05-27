@@ -33,7 +33,7 @@ public class SysUser implements Serializable {
     /**
      * 用户类型：1：普通，2-系统
      */
-    private int roleType;
+    private int roleType = 1;
     /**
      * 系统用户真实姓名
      */
@@ -41,7 +41,7 @@ public class SysUser implements Serializable {
     /**
      * 状态：1：可用，2：禁用，3：删除状态
      */
-    private int status;
+    private int status = 1;
 
 
 }

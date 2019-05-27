@@ -31,7 +31,7 @@ public class MpGenenator {
 
         GlobalConfig gc = new GlobalConfig();
         gc.setOutputDir(dirPath);
-        gc.setAuthor("zj");
+        gc.setAuthor("zhangjie");
         gc.setFileOverride(true);   //是否覆盖
         gc.setActiveRecord(true);   //不需要activityRecord特性的请改为false
         gc.setEnableCache(false);   //xml 二级缓存
@@ -73,11 +73,15 @@ public class MpGenenator {
         strategy.setNaming(NamingStrategy.underline_to_camel);  //表名生成策略
         strategy.setInclude(new String[]{"sys_user","global_enum"});//需要生成的表，不加默认全部
         //strategy.setExclude(new String[]{"sys_user"});  //排除生成的表
+        strategy.setColumnNaming(NamingStrategy.underline_to_camel);//字段名称生成策略-驼峰式
         // 自定义实体父类
         // strategy.setSuperEntityClass("com.baomidou.demo.TestEntity");
+        // 自定义实体， lombok注解
+        strategy.setEntityLombokModel(true);
         // 自定义实体，公共字段
         // strategy.setSuperEntityColumns(new String[] { "test_id", "age" });
         // 自定义 mapper 父类
+        strategy.setSuperMapperClass("com.doyd.framework.mybatisplus.mapper.MybatisMapper");
         // strategy.setSuperMapperClass("com.baomidou.demo.TestMapper");
         // 自定义 service 父类
         // strategy.setSuperServiceClass("com.baomidou.demo.TestService");
@@ -85,6 +89,8 @@ public class MpGenenator {
         // strategy.setSuperServiceImplClass("com.baomidou.demo.TestServiceImpl");
         // 自定义 controller 父类
         // strategy.setSuperControllerClass("com.baomidou.demo.TestController");
+        // 自定义controller 类， 添加restController 注解
+        strategy.setRestControllerStyle(true);
         // 【实体】是否生成字段常量（默认 false）
         // public static final String ID = "test_id";
         // strategy.setEntityColumnConstant(true);
@@ -96,10 +102,10 @@ public class MpGenenator {
         //包配置
         PackageConfig pc = new PackageConfig();
         pc.setParent("com.example");
-        pc.setModuleName("demo");
+        pc.setModuleName("one");
         pc.setController("controller");
         pc.setEntity("entity");
-        pc.setMapper("mapper");
+        pc.setMapper("dao");
         pc.setService("service");
         pc.setServiceImpl("service.impl");
         pc.setXml("mapperXml");

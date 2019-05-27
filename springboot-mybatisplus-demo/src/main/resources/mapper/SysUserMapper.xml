@@ -4,7 +4,43 @@
     <resultMap id="sysUser" type="com.example.demo.entity.SysUser"/>
     <parameterMap id="sysUser" type="com.example.demo.entity.SysUser"/>
 
-    <select id="getSysUserList" resultMap="sysUser">
-        SELECT  * FROM sys_user where  status = 1;
+    <select id="getUserPage" parameterType="SysUser" resultType="SysUser">
+        select *
+        from sys_user
     </select>
+
+    <select id="getSysUserList3" resultType="SysUser">
+        select *
+        from  sys_user
+        where 1 = 1
+        <if test="realName != null and realName != ''">
+          and  realName like concat('%',#{realName},'%')
+        </if>
+    </select>
+
+    <select id="getSysUserList4" resultType="SysUser">
+        select *
+        from  sys_user
+        where 1 = 1
+        <if test="sysUser.realName != null and sysUser.realName != ''">
+            and  realName like concat('%',#{sysUser.realName},'%')
+        </if>
+    </select>
+
+    <insert id="addUser2" useGeneratedKeys="true" keyProperty="suId" keyColumn="id">
+         INSERT INTO sys_user ( suName, password, roleType, realName, status )
+         VALUES (#{suName}, #{password}, #{roleType}, #{realName}, #{status})
+    </insert>
+
+    <insert id="addBatchUser" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="suId" keyColumn="id">
+          INSERT INTO sys_user ( suName, password, roleType, realName, status ) values
+          <foreach collection="list" item="item" index="index" separator=",">
+              (#{item.suName},
+              #{item.password},
+              #{item.roleType},
+              #{item.realName},
+              #{item.status})
+          </foreach>
+    </insert>
+
 </mapper>
