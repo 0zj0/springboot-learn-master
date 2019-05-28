@@ -62,7 +62,7 @@ public class MpGenenator {
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("123456");
-        dsc.setUrl("jdbc:mysql://192.168.4.98:3306/jkb?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf-8&autoReconnect=true");
+        dsc.setUrl("jdbc:mysql://192.168.4.98:3306/test2?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf-8&autoReconnect=true");
 
         mpg.setDataSource(dsc);
 
@@ -71,7 +71,7 @@ public class MpGenenator {
         //strategy.setCapitalMode(true);// 全局大写命名 ORACLE 注意
         //strategy.setTablePrefix(new String[] { "tb_", "tsys_" });// 此处可以修改为您的表前缀
         strategy.setNaming(NamingStrategy.underline_to_camel);  //表名生成策略
-        strategy.setInclude(new String[]{"sys_user","global_enum"});//需要生成的表，不加默认全部
+        //strategy.setInclude(new String[]{"sys_user","global_enum"});//需要生成的表，不加默认全部
         //strategy.setExclude(new String[]{"sys_user"});  //排除生成的表
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);//字段名称生成策略-驼峰式
         // 自定义实体父类
@@ -81,7 +81,7 @@ public class MpGenenator {
         // 自定义实体，公共字段
         // strategy.setSuperEntityColumns(new String[] { "test_id", "age" });
         // 自定义 mapper 父类
-        strategy.setSuperMapperClass("com.doyd.framework.mybatisplus.mapper.MybatisMapper");
+        //strategy.setSuperMapperClass("com.doyd.framework.mybatisplus.mapper.MybatisMapper");
         // strategy.setSuperMapperClass("com.baomidou.demo.TestMapper");
         // 自定义 service 父类
         // strategy.setSuperServiceClass("com.baomidou.demo.TestService");
@@ -102,7 +102,7 @@ public class MpGenenator {
         //包配置
         PackageConfig pc = new PackageConfig();
         pc.setParent("com.example");
-        pc.setModuleName("one");
+        pc.setModuleName("demo");
         pc.setController("controller");
         pc.setEntity("entity");
         pc.setMapper("dao");

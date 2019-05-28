@@ -7,9 +7,7 @@ import com.example.demo.entity.SysUser;
 import com.example.demo.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,7 +17,7 @@ import java.util.List;
 @Service
 public class SysUserService implements ISysUserService {
 
-    @Autowired
+    @Autowired(required = false)
     private SysUserMapper sysUserDao;
 
     @Override

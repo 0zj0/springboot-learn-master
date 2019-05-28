@@ -1,0 +1,30 @@
+server:
+  port: 8919
+
+mybatis-plus:
+  configuration:
+    #配置返回数据库(column下划线命名&&返回java实体是驼峰命名)，自动匹配无需as（没开启这个，SQL需要写as： select user_id as userId）
+    map-underscore-to-camel-case: false
+  #mybatis-plus mapper xml 文件地址
+  mapper-locations: classpath*:mapper/db1/*Mapper.xml,classpath*:mapper/db2/*Mapper.xml
+  #mybatis-plus type-aliases 文件地址
+  type-aliases-package: com.example.demo.entity
+spring:
+  datasource:
+    common:
+    db1:
+      userName: root
+      password: 123456
+      jdbc-url: jdbc:mysql://192.168.4.98:3306/test1?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf-8&autoReconnect=true
+      #直接使用url 报错
+      #url: jdbc:mysql://192.168.4.98:3306/test1?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf-8&autoReconnect=true
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
+    db2:
+      userName: root
+      password: 123456
+      jdbc-url: jdbc:mysql://192.168.4.98:3306/test2?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf-8&autoReconnect=true
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
+
+
