@@ -15,4 +15,7 @@ public interface IPersonService extends IService<Person> {
 
 
     void getList();
+
+
+    int getListCnt();
 }

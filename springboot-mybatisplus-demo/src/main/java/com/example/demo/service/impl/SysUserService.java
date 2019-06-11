@@ -47,6 +47,8 @@ public class SysUserService implements ISysUserService {
 
     @Override
     public List<SysUser> getSysUserList2(SysUser sysUser) {
+        SysUser sysUser1 = sysUserDao.selectById(1);
+        System.out.println(sysUser1);
         //方式一：
         /*QueryWrapper<SysUser> wrapper = new QueryWrapper<>();
         if(sysUser!=null && !StringUtils.isEmpty(sysUser.getRealName())){

@@ -14,5 +14,8 @@
     <sql id="Base_Column_List">
         id, name, age, addr
     </sql>
+    <select id="getListCnt" resultType="java.lang.Integer">
+        select count(*) from person where id = 100
+    </select>
 
 </mapper>

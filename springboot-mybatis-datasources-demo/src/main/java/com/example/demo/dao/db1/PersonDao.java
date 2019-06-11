@@ -18,4 +18,6 @@ public interface PersonDao extends BaseMapper<Person> {
 
     @Select("select * from person ")
     List<Person> getList();
+
+    int getListCnt();
 }

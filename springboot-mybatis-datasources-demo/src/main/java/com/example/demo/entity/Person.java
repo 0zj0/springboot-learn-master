@@ -20,7 +20,8 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class Person extends Model<Person> {
+
+public class Person extends Model<Person> implements Cloneable {
 
     private static final long serialVersionUID = 1L;
 
@@ -39,4 +40,9 @@ public class Person extends Model<Person> {
         return this.id;
     }
 
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 }

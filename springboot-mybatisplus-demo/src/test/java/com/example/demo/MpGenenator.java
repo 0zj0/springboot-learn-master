@@ -20,7 +20,7 @@ import java.util.Map;
  */
 public class MpGenenator {
 
-    final static String  dirPath = "F://generator";
+    final static String  dirPath = "F://generators2";
 
     public static void main(String[] args) {
         AutoGenerator mpg = new AutoGenerator();
@@ -39,11 +39,12 @@ public class MpGenenator {
         gc.setBaseColumnList(true); //xml columlist
 
         // 自定义文件命名，注意 %s 会自动填充表实体属性！
-        gc.setMapperName("%sDao");
+        gc.setMapperName("%sMapper");
         gc.setXmlName("%sMapper");
         gc.setServiceName("I%sService");
         gc.setServiceImplName("%sService");
         gc.setControllerName("%sController");
+        gc.setEntityName("%sPO");
 
         mpg.setGlobalConfig(gc);
 
@@ -59,10 +60,16 @@ public class MpGenenator {
                 return super.processTypeConvert(fieldType);
             }
         });*/
-        dsc.setDriverName("com.mysql.cj.jdbc.Driver");
+        /*dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("123456");
         dsc.setUrl("jdbc:mysql://192.168.4.98:3306/test2?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf-8&autoReconnect=true");
+*/
+        dsc.setDriverName("com.mysql.cj.jdbc.Driver");
+        dsc.setUsername("doyd");
+        dsc.setPassword("doyd1913");
+        dsc.setUrl("jdbc:mysql://192.168.4.30:3306/jkb_vip?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf-8&autoReconnect=true");
+
 
         mpg.setDataSource(dsc);
 
@@ -81,7 +88,7 @@ public class MpGenenator {
         // 自定义实体，公共字段
         // strategy.setSuperEntityColumns(new String[] { "test_id", "age" });
         // 自定义 mapper 父类
-        //strategy.setSuperMapperClass("com.doyd.framework.mybatisplus.mapper.MybatisMapper");
+        strategy.setSuperMapperClass("com.doyd.framework.mybatisplus.mapper.MybatisMapper");
         // strategy.setSuperMapperClass("com.baomidou.demo.TestMapper");
         // 自定义 service 父类
         // strategy.setSuperServiceClass("com.baomidou.demo.TestService");
@@ -101,11 +108,11 @@ public class MpGenenator {
 
         //包配置
         PackageConfig pc = new PackageConfig();
-        pc.setParent("com.example");
-        pc.setModuleName("demo");
+        pc.setParent("com.doyd");
+        pc.setModuleName("vip");
         pc.setController("controller");
-        pc.setEntity("entity");
-        pc.setMapper("dao");
+        pc.setEntity("entity.po");
+        pc.setMapper("dao.po");
         pc.setService("service");
         pc.setServiceImpl("service.impl");
         pc.setXml("mapperXml");
