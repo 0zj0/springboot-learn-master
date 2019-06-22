@@ -5,14 +5,20 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.example.demo.entity.Student">
         <id column="id" property="id" />
-        <result column="sname" property="sname" />
-        <result column="sage" property="sage" />
-        <result column="saddr" property="saddr" />
+        <result column="sname" property="name" />
+        <result column="sage" property="age" />
+        <result column="saddr" property="addr" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, sname, sage, saddr
     </sql>
+    <update id="update1">
+        update student set sname = #{name} where id = #{id}
+    </update>
+    <update id="update2">
+        update student set sname = #{name} where id = #{id}
+    </update>
 
 </mapper>

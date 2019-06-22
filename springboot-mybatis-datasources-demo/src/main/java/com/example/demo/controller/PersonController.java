@@ -58,5 +58,11 @@ public class PersonController {
         return "212222";
     }
 
+
+    @GetMapping("/test2")
+    public String test2(){
+        personService.test2();
+        return "1111";
+    }
 }
 

@@ -3,7 +3,9 @@ package com.example.demo.controller;
 import com.example.demo.entity.Person;
 
 import java.util.ArrayList;
+import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author zhangjie
@@ -32,7 +34,7 @@ public class test {
     }*/
 
 
-    public static void main(String[] args) throws CloneNotSupportedException {
+    /*public static void main(String[] args) throws CloneNotSupportedException {
         Person person = new Person();
         person.setId(1);
         person.setName("111");
@@ -49,5 +51,34 @@ public class test {
         for(Person person2:list){
             System.out.println(person2.toString());
         }
+    }*/
+
+    public static void main(String[] args) {
+
+        List<Person> list = new ArrayList<>();
+        for(int i = 0; i < 5;i++){
+            Person person = new Person();
+            person.setId(i);
+            person.setName("111");
+            person.setAge(i+20);
+            list.add(person);
+        }
+        IntSummaryStatistics sum = list.stream().map(Person::getAge).collect(Collectors.summarizingInt(value -> value));
+        System.out.println(sum.getSum());
+        int sum2 = list.stream().map(Person::getAge)
+                .reduce((integer, integer2) -> integer + integer2)
+                .orElse(0);
+        System.out.println(sum2);
+        List<Person> list3 = new ArrayList<>();
+        int sum3 = list3.stream().map(Person::getAge)
+                .reduce((integer, integer2) -> integer + integer2)
+                .orElse(0);
+        System.out.println(sum3);
+
+        List<Person> list2 = list.stream().filter(person -> person.getId()!=1).collect(Collectors.toList());
+        list2.stream().forEach(person -> System.out.println(person.toString()));
+
+        List<Integer> ids = list3.stream().map(Person::getId).collect(Collectors.toList());
+        System.out.println(ids.contains(1));
     }
 }

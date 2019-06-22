@@ -1,4 +1,4 @@
-package com.example.demo.config;
+package com.example.demo.config.datasource;
 
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
